@@ -11,6 +11,7 @@ api.get('/', (req, res, next) => {
     .catch(next);
 });
 
+//note
 api.post('/', (req, res, next) => {
   console.log(req.body);
   Student.findOrCreate({
