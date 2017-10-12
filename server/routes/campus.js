@@ -19,13 +19,15 @@ api.param('campusId', (req, res, next, campusId) => {
     if (!campus) {
       const err = Error('Campus not found');
       err.status = 404;
-      throw err;
+      next(err);
+    } else {
+      req.campus = campus;
+      next();
     }
-    req.campus = campus;
-    next();
-  });});
+  });
+});
 
-api.get('/:campusId', (req, res) => res.send({ hello: 'campus' }));
+api.get('/:campusId', (req, res) => res.send(req.campus));
 
 api.put('/:campusId', (req, res) => res.send({ hello: 'campus' }));
 

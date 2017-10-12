@@ -16,7 +16,7 @@ api.post('/', (req, res, next) => {
   console.log(req.body);
   Student.findOrCreate({
     where: { name: req.body.name, email: req.body.email },
-    defaults: {campusId: req.body.campusId}
+    defaults: { campusId: req.body.campusId }
   }) //returns an array [student object, created boolean]
     .spread((student, created) => {
       console.log(student);
@@ -31,18 +31,21 @@ api.param('studentId', (req, res, next, studentId) => {
     if (!student) {
       const err = Error('Student not found');
       err.status = 404;
-      throw err;
+      next(err);
+    } else {
+      req.student = student;
+      next();
     }
-    req.student = student;
-    next();
   });
 });
 
-api.get('/:studentId', (req, res) => {
-  res.json(req.student);
-});
+api.get('/:studentId', (req, res) => res.json(req.student));
 
-api.put('/:studentId', (req, res) => res.send({ hello: 'student' }));
+api.put('/:studentId', (req, res) => {
+  req.student.update(req.body).then(student => {
+    res.send(student);
+  });
+});
 
 api.delete('/:studentId', (req, res) => res.send({ hello: 'student' }));
 

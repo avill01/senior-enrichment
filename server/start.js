@@ -24,7 +24,7 @@ module.exports = app
     console.error(err, typeof next);
     console.error(err.stack);
     res.status(err.status || 500).send(err.message || 'Internal server error.');
-  }); // Send index.html for any other requests.
+  });
 
 // notice the use of `_` as the first parameter above. This is a pattern for parameters that must exist, but you don't use or reference (or need) in the function body that follows.
 
@@ -45,7 +45,7 @@ if (module === require.main) {
 
   const db = require('../db');
   //{force:true}
-  db.sync({force:true}).then(() => {
+  db.sync().then(() => {
     console.log('db synced');
     app.listen(PORT, () => console.log(`server listening on port ${PORT}`));
   });

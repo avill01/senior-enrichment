@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
-import Header from './Header';
-import Footer from './Footer';
+import Navbar from './Navbar';
+import Welcome from './Welcome';
+import AllCampuses from './AllCampuses';
+import AllStudents from './AllStudents';
 
 export default class Root extends Component {
-  constructor() {
-    super();
-  }
-
   render() {
     return (
       <div>
-        <Header />
-        <Router>
-          <Route exact
-        </Router>
-        <Footer />
+        <Navbar />
+        <div className="main">
+          <Route exact path="/" component={Welcome} />
+          <Route path="/campus" component={AllCampuses} />
+          <Route path="/student" component={AllStudents} />
+        </div>
       </div>
     );
   }
