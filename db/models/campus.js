@@ -9,7 +9,8 @@ const Campus = db.define('campus', {
     allowNull: false
   },
   image: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    defaultValue: 'https://www.askideas.com/media/19/Papillon-Puppy-Looking.jpg'
   }
 });
 
