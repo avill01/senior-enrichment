@@ -1,12 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { NavLink, withRouter} from 'react-router-dom';
 
-export default function AllStudents() {
+function AllStudents(props) {
   return (
     <div>
-      <div>Student 1</div>
-      <div>Student 2</div>
-      <div>Student 3</div>
-      <div>Student 4</div>
+      {props.students.map(student => <div key={student.id}>{student.name}</div>)}
     </div>
   );
 }
+
+function mapStateToProps(state) {
+  return {
+    students: state.students
+  };
+}
+
+export default withRouter(connect(mapStateToProps)(AllStudents));
