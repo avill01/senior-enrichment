@@ -1,18 +1,36 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
-export default function Navbar() {
+// import { connect } from 'react-redux';
+
+function Navbar(props) {
+  console.log(props);
   return (
     <div>
-      <NavLink to="/" activeClassName="active">
-        <button>Home</button>
-      </NavLink>
-      <NavLink to="/campus" activeClassName="active">
-        <button>Campuses</button>
-      </NavLink>
-      <NavLink to="/student" activeClassName="active">
-        <button>Students</button>
-      </NavLink>
+      <div id="navbar-title">
+        <span>
+          {props.location.pathname === '/'
+            ? '/welcome'
+            : props.location.pathname}
+        </span>
+      </div>
+      <div id="navbar">
+        <div id="navbar-left">
+          <NavLink to="/" activeClassName="active">
+            <button>Home</button>
+          </NavLink>
+          <NavLink to="/campuses" activeClassName="active">
+            <button>Campuses</button>
+          </NavLink>
+          <NavLink to="/students" activeClassName="active">
+            <button>Students</button>
+          </NavLink>
+        </div>
+        {(props.location.pathname === '/campuses' ||
+          props.location.pathname === '/students') && <button>Add</button>}
+      </div>
     </div>
   );
 }
+
+export default withRouter(Navbar);

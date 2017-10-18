@@ -4,10 +4,10 @@ import { Route } from 'react-router-dom';
 import store, { fetchCampuses, fetchStudents } from '../store';
 
 import Navbar from './Navbar';
-import Welcome from './Welcome';
 import AllCampuses from './AllCampuses';
 import AllStudents from './AllStudents';
 import SingleCampus from './SingleCampus';
+import SingleStudent from './SingleStudent';
 
 export default class Root extends Component {
   componentDidMount() {
@@ -17,15 +17,19 @@ export default class Root extends Component {
 
   render() {
     return (
-      <div>
+      <div id="main">
         <Navbar />
-        <div className="main">
-          <Route exact path="/" component={Welcome} />
-          <Route exact path="/campus" component={AllCampuses} />
+        <div>
+          <Route exact path="/" />
+          <Route exact path="/campuses" component={AllCampuses} />
           <Route path="/campus/:campusId" component={SingleCampus} />
-          <Route exact path="/student" component={AllStudents} />
+          <Route exact path="/students" component={AllStudents} />
+          <Route redirect="/" />
         </div>
       </div>
     );
   }
 }
+
+
+//<Route path="/student/:studentId" component={SingleStudent} />

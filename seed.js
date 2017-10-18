@@ -9,34 +9,34 @@ const students = [
   { name: 'lunch_planning', email: 'some@email.com', campusId: 4 }
 ];
 
-const campuses = [{
-  name: 'Earth',
-  image: '/images/cody.jpg'
-}, {
-  name: 'Mars',
-  image: '/images/ben.jpg'
-}, {
-  name: 'Pluto',
-  image: '/images/star.jpg'
-}, {
-  name: 'Etc',
-  image: '/images/batman.jpg'
-}];
-
+const campuses = [
+  {
+    name: 'Earth',
+    image: 'http://via.placeholder.com/150x150'
+  },
+  {
+    name: 'Mars',
+    image: 'http://via.placeholder.com/150x150'
+  },
+  {
+    name: 'Pluto',
+    image: 'http://via.placeholder.com/150x150'
+  },
+  {
+    name: 'Etc',
+    image: 'http://via.placeholder.com/150x150'
+  }
+];
 
 const seed = () =>
-  Promise.all(campuses.map(campus =>
-    Campus.create(campus))
-  )
-  .then(() =>
-  Promise.all(students.map(student =>
-    Student.create(student))
-  )
-);
+  Promise.all(campuses.map(campus => Campus.create(campus))).then(() =>
+    Promise.all(students.map(student => Student.create(student)))
+  );
 
 const main = () => {
   console.log('Syncing db...');
-  db.sync({ force: true })
+  db
+    .sync({ force: true })
     .then(() => {
       console.log('Seeding databse...');
       return seed();

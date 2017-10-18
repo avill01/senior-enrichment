@@ -5,11 +5,62 @@
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100vh;
   font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue',
     Helvetica, Arial, 'Lucida Grande', sans-serif;
   font-weight: 300;
 }
+
+#main {
+  width: 800px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+}
+
+#navbar-title {
+  font-size: 1.5em;
+}
+#navbar {
+  display: flex;
+  padding: 1em 0;
+  justify-content: space-between;
+}
+#navbar button{
+  margin: 0 0.5em;
+  width: 8em;
+}
+#home {
+  display: flex;
+  justify-content: center;
+}
+
+#all-campuses {
+  width: 100%;
+  text-align: center;
+}
+#all-campuses th {
+  font-weight: 300;
+  font-size: 1.2em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+#all-campuses button {
+  height: 1.2em;
+  width: 1.2em;
+}
+
+#all-students {
+  width: 100%;
+  text-align: center;
+}
+#all-students th {
+  font-weight: 300;
+  font-size: 1.2em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+#all-students button {
+  height: 1.2em;
+  width: 1.2em;
+}
+
+
