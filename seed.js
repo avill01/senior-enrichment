@@ -3,10 +3,90 @@ const Campus = require('./db/models/campus');
 const Student = require('./db/models/student');
 
 const students = [
-  { name: 'really_random', email: 'some@email.com', campusId: 1 },
-  { name: 'generally_speaking', email: 'some@email.com', campusId: 2 },
-  { name: 'dogs_of_fullstack', email: 'some@email.com', campusId: 3 },
-  { name: 'lunch_planning', email: 'some@email.com', campusId: 4 }
+  {
+    name: 'Michael Jordan',
+    email: 'some@email.com',
+    address: '142 wallaby way',
+    profile: 'http://via.placeholder.com/150x150',
+    campusId: 1
+  },
+  {
+    name: 'Evans Something',
+    email: 'some@email.com',
+    address: '142 wallaby way',
+    profile: 'http://via.placeholder.com/150x150',
+    campusId: 2
+  },
+  {
+    name: 'Puppy Bowl',
+    email: 'some@email.com',
+    address: '142 wallaby way',
+    profile: 'http://via.placeholder.com/150x150',
+    campusId: 3
+  },
+  {
+    name: 'Neo Anderson',
+    email: 'some@email.com',
+    address: '142 wallaby way',
+    profile: 'http://via.placeholder.com/150x150',
+    campusId: 4
+  },
+  {
+    name: 'Michael Gordon',
+    email: 'some@email.com',
+    address: '142 wallaby way',
+    profile: 'http://via.placeholder.com/150x150',
+    campusId: 1
+  },
+  {
+    name: 'Eric Something',
+    email: 'some@email.com',
+    address: '142 wallaby way',
+    profile: 'http://via.placeholder.com/150x150',
+    campusId: 2
+  },
+  {
+    name: 'Raptor Bowl',
+    email: 'some@email.com',
+    address: '142 wallaby way',
+    profile: 'http://via.placeholder.com/150x150',
+    campusId: 2
+  },
+  {
+    name: 'Betsy Anderson',
+    email: 'some@email.com',
+    address: '142 wallaby way',
+    profile: 'http://via.placeholder.com/150x150',
+    campusId: 4
+  },
+  {
+    name: 'John Jordan',
+    email: 'some@email.com',
+    address: '142 wallaby way',
+    profile: 'http://via.placeholder.com/150x150',
+    campusId: 1
+  },
+  {
+    name: 'Evans Nothing',
+    email: 'some@email.com',
+    address: '142 wallaby way',
+    profile: 'http://via.placeholder.com/150x150',
+    campusId: 7
+  },
+  {
+    name: 'Cat Bowl',
+    email: 'some@email.com',
+    address: '142 wallaby way',
+    profile: 'http://via.placeholder.com/150x150',
+    campusId: 6
+  },
+  {
+    name: 'Neo Lakes',
+    email: 'some@email.com',
+    address: '142 wallaby way',
+    profile: 'http://via.placeholder.com/150x150',
+    campusId: 5
+  }
 ];
 
 const campuses = [
@@ -24,6 +104,18 @@ const campuses = [
   },
   {
     name: 'mercury',
+    image: 'http://via.placeholder.com/150x150'
+  },
+  {
+    name: 'uranus',
+    image: 'http://via.placeholder.com/150x150'
+  },
+  {
+    name: 'mercury',
+    image: 'http://via.placeholder.com/150x150'
+  },
+  {
+    name: 'saturn',
     image: 'http://via.placeholder.com/150x150'
   }
 ];

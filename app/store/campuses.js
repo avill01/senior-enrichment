@@ -20,6 +20,8 @@ export default function reducer(state = [], action) {
       return action.campuses;
     case ADD_CAMPUS:
       return [...state, action.campus];
+    case DELETE_CAMPUS:
+      return state.filter(el => el.id !== action.id);
     default:
       return state;
   }
@@ -36,7 +38,6 @@ export function fetchCampuses() {
       .catch(console.error);
   };
 }
-
 export const createCampus = body => dispatch => {
   return axios
     .post('/api/campuses', body)
@@ -47,10 +48,9 @@ export const createCampus = body => dispatch => {
     })
     .catch(console.error);
 };
-
 export const removeCampus = id => dispatch => {
   return axios
-    .post(`/api/campuses/${id}`)
+    .delete(`/api/campuses/${id}`)
     .then(res => {
       if (res.status === 204) {
         dispatch(deleteCampus(id));

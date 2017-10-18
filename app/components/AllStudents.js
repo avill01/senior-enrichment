@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { NavLink, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import { removeStudent } from '../store';
 
@@ -26,7 +26,7 @@ function AllStudents(props) {
               <td>
                 <button onClick={(evt) => {
                   evt.preventDefault();
-                  props.removeStudent(student.id);
+                  confirm('Are you sure?') && props.removeStudent(student.id);
                 }}>X</button>
               </td>
             </tr>

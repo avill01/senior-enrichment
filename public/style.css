@@ -11,6 +11,9 @@ button, input, select, option {
   font-size: 1em;
 }
 
+tr:nth-child(even) {background: #EEE}
+tr:nth-child(odd) {background: #FFF}
+
 #main {
   width: 800px;
   height: 500px;

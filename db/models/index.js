@@ -5,7 +5,8 @@ const Campus = require('./campus.js');
 
 Student.belongsTo(Campus);
 Campus.hasMany(Student, {
-  onDelete: 'cascade'
+  onDelete: 'cascade',
+  hooks: 'true'
 });
 
 module.exports = {
