@@ -2,12 +2,13 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
 
-body {
   font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue',
     Helvetica, Arial, 'Lucida Grande', sans-serif;
   font-weight: 300;
+}
+button, input, select, option {
+  font-size: 1em;
 }
 
 #main {
@@ -44,10 +45,6 @@ body {
   font-size: 1.2em;
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }
-#all-campuses button {
-  height: 1.2em;
-  width: 1.2em;
-}
 
 #all-students {
   width: 100%;
@@ -58,9 +55,22 @@ body {
   font-size: 1.2em;
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }
-#all-students button {
-  height: 1.2em;
-  width: 1.2em;
+
+#form-container {
+  display: flex;
+  justify-content: center;
+  padding: 1em 0;
+}
+form input {
+  margin: 0 0.5em;
+}
+form select {
+  margin: 0 0.5em;
+}
+form button {
+  margin: 0 0.5em;
+  width: 8em;
+
 }
 
 

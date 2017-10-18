@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import store, { fetchCampuses, fetchStudents } from '../store';
+import { fetchCampuses, fetchStudents } from '../store';
 
 import Navbar from './Navbar';
 import AllCampuses from './AllCampuses';
 import AllStudents from './AllStudents';
+import AddCampus from './AddCampus';
+import AddStudent from './AddStudent';
 import SingleCampus from './SingleCampus';
-import SingleStudent from './SingleStudent';
+// import SingleStudent from './SingleStudent';
 
-export default class Root extends Component {
+class Root extends Component {
   componentDidMount() {
-    store.dispatch(fetchCampuses());
-    store.dispatch(fetchStudents());
+    this.props.fetchCampuses();
+    this.props.fetchStudents();
   }
 
   render() {
@@ -21,9 +24,11 @@ export default class Root extends Component {
         <Navbar />
         <div>
           <Route exact path="/" />
-          <Route exact path="/campuses" component={AllCampuses} />
+          <Route exact path="/campuses/add" component={AddCampus} />
+          <Route path="/campuses" component={AllCampuses} />
           <Route path="/campus/:campusId" component={SingleCampus} />
-          <Route exact path="/students" component={AllStudents} />
+          <Route exact path="/students/add" component={AddStudent} />
+          <Route path="/students" component={AllStudents} />
           <Route redirect="/" />
         </div>
       </div>
@@ -31,5 +36,8 @@ export default class Root extends Component {
   }
 }
 
+const mapDispatch = { fetchStudents, fetchCampuses };
+
+export default withRouter(connect(null, mapDispatch)(Root));
 
 //<Route path="/student/:studentId" component={SingleStudent} />

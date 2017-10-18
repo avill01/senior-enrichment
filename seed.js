@@ -11,19 +11,19 @@ const students = [
 
 const campuses = [
   {
-    name: 'Earth',
+    name: 'earth',
     image: 'http://via.placeholder.com/150x150'
   },
   {
-    name: 'Mars',
+    name: 'mars',
     image: 'http://via.placeholder.com/150x150'
   },
   {
-    name: 'Pluto',
+    name: 'pluto',
     image: 'http://via.placeholder.com/150x150'
   },
   {
-    name: 'Etc',
+    name: 'mercury',
     image: 'http://via.placeholder.com/150x150'
   }
 ];

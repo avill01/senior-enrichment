@@ -1,16 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
+
+import { removeStudent } from '../store';
+
 function AllStudents(props) {
   return (
       <table id="all-students">
         <tbody>
           <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Campus</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th>id</th>
+            <th>name</th>
+            <th>campus</th>
+            <th>view</th>
+            <th>delete</th>
           </tr>
           {props.students.map(student => (
             <tr key={student.id}>
@@ -21,7 +24,10 @@ function AllStudents(props) {
                 <button>☰</button>
               </td>
               <td>
-                <button>X</button>
+                <button onClick={(evt) => {
+                  evt.preventDefault();
+                  props.removeStudent(student.id);
+                }}>X</button>
               </td>
             </tr>
           ))}
@@ -34,4 +40,7 @@ function mapStateToProps(state) {
     students: state.students
   };
 }
-export default withRouter(connect(mapStateToProps)(AllStudents));
+
+const mapDispatch = { removeStudent };
+
+export default withRouter(connect(mapStateToProps, mapDispatch)(AllStudents));
