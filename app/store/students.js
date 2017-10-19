@@ -66,6 +66,16 @@ export const removeStudent = id => dispatch => {
     })
     .catch(console.error);
 };
+export const updateStudentRecord = body => dispatch => {
+  return axios
+    .post(`/api/students/${body.id}`, body)
+    .then(res => res.data)
+    .then(student => {
+      console.log('updated student', student);
+      dispatch(updateStudent(student));
+    })
+    .catch(console.error);
+};
 export const extUpdateStudent = student => dispatch => {
   dispatch(updateStudent(student));
 }

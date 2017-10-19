@@ -26,12 +26,12 @@ function Navbar(props) {
             <button>students</button>
           </NavLink>
         </div>
-        {props.location.pathname === '/campuses' && (
+        {props.location.pathname.match('campuses') && (
           <NavLink to="/campuses/add">
             <button>add campus</button>
           </NavLink>
         )}
-        {props.location.pathname === '/students' && (
+        {props.location.pathname.match('students') && (
           <NavLink to="/students/add">
             <button>add student</button>
           </NavLink>

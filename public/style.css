@@ -25,6 +25,12 @@ a:link {
   text-decoration-line: inherit;
 }
 
+li {
+  list-style: none;
+  padding-left: 2em;
+  cursor: pointer;
+}
+
 tr:nth-child(even) {background: #EEE}
 tr:nth-child(odd) {background: #FFF}
 
@@ -77,6 +83,8 @@ tr:nth-child(odd) {background: #FFF}
 .students-list {
   padding-left: 1em;
 }
+
+
 #action-bar {
   display: flex;
   flex-direction: column;
@@ -99,10 +107,10 @@ tr:nth-child(odd) {background: #FFF}
   justify-content: center;
   padding: 1em 0;
 }
-form input {
+#form-container form input {
   margin: 0 0.5em;
 }
-form select {
+#form-container form select {
   margin: 0 0.5em;
 }
 

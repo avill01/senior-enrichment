@@ -17,7 +17,12 @@ function Campuses(props) {
       <TableList
         type="campuses"
         entities={props.campuses}
-        removeEntity={props.removeCampus}
+        removeEntity={id => {
+          props.students
+            .filter(student => student.campusId === id)
+            .forEach(student => props.deleteStudent(student.id));
+          props.removeCampus(id);
+        }}
         selectEntity={props.setCurrentEntity}
       />
     </div>

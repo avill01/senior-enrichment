@@ -12,6 +12,7 @@ class Root extends Component {
   componentDidMount() {
     this.props.fetchCampuses();
     this.props.fetchStudents();
+    //if something in url load current entity
   }
 
   render() {
