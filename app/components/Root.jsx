@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
-import { Route, withRouter } from 'react-router-dom';
+import { Route, withRouter, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { fetchCampuses, fetchStudents } from '../store';
 
-import Navbar from './Navbar';
-import AllCampuses from './AllCampuses';
-import AllStudents from './AllStudents';
-import AddCampus from './AddCampus';
-import AddStudent from './AddStudent';
-import SingleCampus from './SingleCampus';
-// import SingleStudent from './SingleStudent';
+import Navbar from './container/Navbar';
+import Campuses from './container/Campuses';
+import Students from './container/Students';
 
 class Root extends Component {
   componentDidMount() {
@@ -22,15 +18,9 @@ class Root extends Component {
     return (
       <div id="main">
         <Navbar />
-        <div>
-          <Route exact path="/" />
-          <Route exact path="/campuses/add" component={AddCampus} />
-          <Route path="/campuses" component={AllCampuses} />
-          <Route path="/campus/:campusId" component={SingleCampus} />
-          <Route exact path="/students/add" component={AddStudent} />
-          <Route path="/students" component={AllStudents} />
+          <Route path="/campuses" component={Campuses} />
+          <Route path="/students" component={Students} />
           <Route redirect="/" />
-        </div>
       </div>
     );
   }
@@ -39,5 +29,3 @@ class Root extends Component {
 const mapDispatch = { fetchStudents, fetchCampuses };
 
 export default withRouter(connect(null, mapDispatch)(Root));
-
-//<Route path="/student/:studentId" component={SingleStudent} />

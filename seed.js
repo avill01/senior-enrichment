@@ -7,84 +7,84 @@ const students = [
     name: 'Michael Jordan',
     email: 'some@email.com',
     address: '142 wallaby way',
-    profile: 'http://via.placeholder.com/150x150',
+    image: 'http://via.placeholder.com/150x150',
     campusId: 1
   },
   {
     name: 'Evans Something',
-    email: 'some@email.com',
+    email: 'burger@email.com',
     address: '142 wallaby way',
-    profile: 'http://via.placeholder.com/150x150',
+    image: 'http://via.placeholder.com/150x150',
     campusId: 2
   },
   {
     name: 'Puppy Bowl',
-    email: 'some@email.com',
+    email: 'pizza@email.com',
     address: '142 wallaby way',
-    profile: 'http://via.placeholder.com/150x150',
+    image: 'http://via.placeholder.com/150x150',
     campusId: 3
   },
   {
     name: 'Neo Anderson',
-    email: 'some@email.com',
+    email: 'map@email.com',
     address: '142 wallaby way',
-    profile: 'http://via.placeholder.com/150x150',
+    image: 'http://via.placeholder.com/150x150',
     campusId: 4
   },
   {
     name: 'Michael Gordon',
-    email: 'some@email.com',
+    email: 'john@email.com',
     address: '142 wallaby way',
-    profile: 'http://via.placeholder.com/150x150',
+    image: 'http://via.placeholder.com/150x150',
     campusId: 1
   },
   {
     name: 'Eric Something',
-    email: 'some@email.com',
+    email: 'eric@email.com',
     address: '142 wallaby way',
-    profile: 'http://via.placeholder.com/150x150',
+    image: 'http://via.placeholder.com/150x150',
     campusId: 2
   },
   {
     name: 'Raptor Bowl',
-    email: 'some@email.com',
+    email: 'bowlbowl@email.com',
     address: '142 wallaby way',
-    profile: 'http://via.placeholder.com/150x150',
+    image: 'http://via.placeholder.com/150x150',
     campusId: 2
   },
   {
     name: 'Betsy Anderson',
-    email: 'some@email.com',
+    email: 'btebtes@email.com',
     address: '142 wallaby way',
-    profile: 'http://via.placeholder.com/150x150',
+    image: 'http://via.placeholder.com/150x150',
     campusId: 4
   },
   {
     name: 'John Jordan',
-    email: 'some@email.com',
+    email: 'jjjjjj@email.com',
     address: '142 wallaby way',
-    profile: 'http://via.placeholder.com/150x150',
+    image: 'http://via.placeholder.com/150x150',
     campusId: 1
   },
   {
     name: 'Evans Nothing',
-    email: 'some@email.com',
+    email: 'lame@email.com',
     address: '142 wallaby way',
-    profile: 'http://via.placeholder.com/150x150',
+    image: 'http://via.placeholder.com/150x150',
     campusId: 7
   },
   {
     name: 'Cat Bowl',
-    email: 'some@email.com',
+    email: 'dog@email.com',
     address: '142 wallaby way',
-    profile: 'http://via.placeholder.com/150x150',
+    image: 'http://via.placeholder.com/150x150',
     campusId: 6
   },
   {
     name: 'Neo Lakes',
-    email: 'some@email.com',
+    email: 'theone1337@email.com',
     address: '142 wallaby way',
-    profile: 'http://via.placeholder.com/150x150',
+    image: 'http://via.placeholder.com/150x150',
     campusId: 5
   }
 ];
@@ -92,30 +92,37 @@ const students = [
 const campuses = [
   {
     name: 'earth',
+    address: '142 wallaby way',
     image: 'http://via.placeholder.com/150x150'
   },
   {
     name: 'mars',
+    address: '142 wallaby way',
     image: 'http://via.placeholder.com/150x150'
   },
   {
     name: 'pluto',
+    address: '142 wallaby way',
     image: 'http://via.placeholder.com/150x150'
   },
   {
     name: 'mercury',
+    address: '142 wallaby way',
     image: 'http://via.placeholder.com/150x150'
   },
   {
     name: 'uranus',
+    address: '142 wallaby way',
     image: 'http://via.placeholder.com/150x150'
   },
   {
-    name: 'mercury',
+    name: 'jupiter',
+    address: '142 wallaby way',
     image: 'http://via.placeholder.com/150x150'
   },
   {
     name: 'saturn',
+    address: '142 wallaby way',
     image: 'http://via.placeholder.com/150x150'
   }
 ];

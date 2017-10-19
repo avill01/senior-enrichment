@@ -43,6 +43,7 @@ export const createCampus = body => dispatch => {
     .post('/api/campuses', body)
     .then(res => res.data)
     .then(campus => {
+      campus.students = [];
       if (!campus.id) alert('That campus already exists!');
       else dispatch(addCampus(campus));
     })

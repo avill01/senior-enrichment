@@ -9,8 +9,9 @@ function Navbar(props) {
       <div id="navbar-title">
         <span>
           {props.location.pathname === '/'
-            ? '/welcome'
-            : props.location.pathname}
+            ? 'welcome'
+            : props.location.pathname.match('students') ||
+              props.location.pathname.match('campuses')}
         </span>
       </div>
       <div id="navbar">
@@ -27,12 +28,12 @@ function Navbar(props) {
         </div>
         {props.location.pathname === '/campuses' && (
           <NavLink to="/campuses/add">
-            <button>add</button>
+            <button>add campus</button>
           </NavLink>
         )}
         {props.location.pathname === '/students' && (
           <NavLink to="/students/add">
-            <button>add</button>
+            <button>add student</button>
           </NavLink>
         )}
       </div>

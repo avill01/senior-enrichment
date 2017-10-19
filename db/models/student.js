@@ -11,9 +11,17 @@ const Student = db.define('student', {
   email: {
     type: DataTypes.STRING,
     allowNull: false,
+    unique: true,
     validate: {
       isEmail: true
     }
+  },
+  address: {
+    type: DataTypes.STRING
+  },
+  image: {
+    type: DataTypes.STRING,
+    defaultValue: 'http://via.placeholder.com/150x150'
   }
 });
 

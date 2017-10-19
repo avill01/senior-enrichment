@@ -6,11 +6,15 @@ const DataTypes = db.Sequelize;
 const Campus = db.define('campus', {
   name: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    unique: true
+  },
+  address: {
+    type: DataTypes.STRING
   },
   image: {
     type: DataTypes.STRING,
-    defaultValue: 'https://www.askideas.com/media/19/Papillon-Puppy-Looking.jpg'
+    defaultValue: 'http://via.placeholder.com/150x150'
   }
 });
 

@@ -11,6 +11,20 @@ button, input, select, option {
   font-size: 1em;
 }
 
+button, i {
+  cursor: pointer;
+}
+
+button {
+  margin: 0.25em 0.5em;
+  width: 6em;
+}
+
+a:link {
+  color:inherit;
+  text-decoration-line: inherit;
+}
+
 tr:nth-child(even) {background: #EEE}
 tr:nth-child(odd) {background: #FFF}
 
@@ -30,10 +44,6 @@ tr:nth-child(odd) {background: #FFF}
   padding: 1em 0;
   justify-content: space-between;
 }
-#navbar button{
-  margin: 0 0.5em;
-  width: 8em;
-}
 #home {
   display: flex;
   justify-content: center;
@@ -48,6 +58,31 @@ tr:nth-child(odd) {background: #FFF}
   font-size: 1.2em;
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }
+
+#single-campus-content {
+  display: flex;
+}
+.bio {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1em;
+}
+.bio-title {
+  font-size: 1.5em;
+}
+.bio-title i {
+  font-size: 0.7em;
+  padding-left: 30px;
+}
+.students-list {
+  padding-left: 1em;
+}
+#action-bar {
+  display: flex;
+  flex-direction: column;
+  align-self: right;
+}
+
 
 #all-students {
   width: 100%;
@@ -70,10 +105,4 @@ form input {
 form select {
   margin: 0 0.5em;
 }
-form button {
-  margin: 0 0.5em;
-  width: 8em;
-
-}
-
 

@@ -44,6 +44,7 @@ export const createStudent = body => dispatch => {
     .post('/api/students', body)
     .then(res => res.data)
     .then(student => {
+      console.log(student);
       dispatch(addStudent(student));
     })
     .catch(console.error);
