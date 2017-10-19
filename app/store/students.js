@@ -2,7 +2,8 @@ import axios from 'axios';
 
 const GET_STUDENTS = 'GET_STUDENTS';
 const ADD_STUDENT = 'ADD_STUDENT';
-const DELETE_STUDENT =  'DELETE_STUDENT';
+const DELETE_STUDENT = 'DELETE_STUDENT';
+const UPDATE_STUDENT = 'UPDATE_STUDENT';
 
 export function getStudents(students) {
   return { type: GET_STUDENTS, students };
@@ -11,9 +12,11 @@ export function addStudent(student) {
   return { type: ADD_STUDENT, student };
 }
 export function deleteStudent(id) {
-  return { type: DELETE_STUDENT, id};
+  return { type: DELETE_STUDENT, id };
 }
-
+export function updateStudent(student) {
+  return { type: UPDATE_STUDENT, student };
+}
 
 export default function reducer(state = [], action) {
   switch (action.type) {
@@ -23,6 +26,10 @@ export default function reducer(state = [], action) {
       return [...state, action.student];
     case DELETE_STUDENT:
       return state.filter(el => el.id !== action.id);
+    case UPDATE_STUDENT:
+      return state.map(
+        student => (action.student.id === student.id ? action.student : student)
+      );
     default:
       return state;
   }
@@ -59,3 +66,6 @@ export const removeStudent = id => dispatch => {
     })
     .catch(console.error);
 };
+export const extUpdateStudent = student => dispatch => {
+  dispatch(updateStudent(student));
+}
