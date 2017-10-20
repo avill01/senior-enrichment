@@ -5,6 +5,7 @@ import { withRouter, Route, Switch } from 'react-router-dom';
 import { removeCampus, deleteStudent, setCurrentEntity } from '../../store';
 import AddCampus from './AddCampus';
 import CurrentEntity from './CurrentEntity';
+import SingleCampus from './SingleCampus';
 import TableList from '../presentational/TableList';
 
 function Campuses(props) {
@@ -12,7 +13,7 @@ function Campuses(props) {
     <div>
       <Switch>
         <Route exact path="/campuses/add" component={AddCampus} />
-        <Route path="/campuses/:campusId" component={CurrentEntity} />
+        <Route path="/campuses/:campusId" component={SingleCampus} />
       </Switch>
       <TableList
         type="campuses"

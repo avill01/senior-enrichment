@@ -147,7 +147,7 @@ class CurrentEntity extends React.Component {
 function headersFromEntity(entity) {
   return Object.keys(entity).filter(
     key =>
-      ['createdAt', 'updatedAt', 'name', 'id', 'students'].indexOf(key) === -1
+      ['createdAt', 'updatedAt', 'name', 'id', 'students', 'campus'].indexOf(key) === -1
   );
 }
 

@@ -51,7 +51,6 @@ export const createStudent = body => dispatch => {
     .post('/api/students', body)
     .then(res => res.data)
     .then(student => {
-      console.log(student);
       dispatch(addStudent(student));
     })
     .catch(console.error);
@@ -67,15 +66,16 @@ export const removeStudent = id => dispatch => {
     .catch(console.error);
 };
 export const updateStudentRecord = body => dispatch => {
+  delete body.updatedAt;
+  delete body.createdAt;
   return axios
-    .post(`/api/students/${body.id}`, body)
+    .put(`/api/students/${body.id}`, body)
     .then(res => res.data)
     .then(student => {
-      console.log('updated student', student);
       dispatch(updateStudent(student));
     })
     .catch(console.error);
 };
 export const extUpdateStudent = student => dispatch => {
   dispatch(updateStudent(student));
-}
+};

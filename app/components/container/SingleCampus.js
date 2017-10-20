@@ -2,68 +2,97 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 
-import { toggleEdit } from '../../store';
+import EditField from './EditField';
+
+import {
+  toggleEdit,
+  extUpdateStudent,
+  updateStudentRecord,
+  updateCampusRequest
+} from '../../store';
 
 class SingleCampus extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selectedCampus: this.props.campuses.find(
-        campus => campus.id === +this.props.match.params.campusId
-      )
-    };
+  componentWillUnmount() {
+    if (this.props.edit) this.props.toggleEdit();
   }
+
+  handleSubmitAllEdits(evt) {
+    evt.preventDefault();
+
+    const edittedCampus = {};
+    edittedCampus.name = evt.target.name.value;
+    edittedCampus.id = evt.target.id.value;
+    edittedCampus.address = evt.target.address.value;
+    edittedCampus.image = evt.target.image.value;
+
+    this.props
+      .updateCampusRequest(this.props.currentEntity.id, edittedCampus)
+      .then(() => this.props.toggleEdit())
+      .catch(console.error);
+  }
+
+  handleSubmitStudent(evt) {
+    evt.preventDefault();
+    const selectedStudent = this.props.students.find(
+      student => student.id === +evt.target.studentSelect.value
+    );
+    const newStudent = Object.assign({}, selectedStudent, {
+      campusId: this.props.currentEntity.id
+    });
+    console.log(newStudent);
+    this.props.updateStudentRecord(newStudent);
+  }
+
   render() {
-    const selectedCampus = this.state.selectedCampus;
-    if (!selectedCampus) return null;
+    const currentEntity = this.props.currentEntity;
+    if (!currentEntity) return null;
     return (
       <div id="single-campus-content">
         <div id="left-bar">
-          <img src={selectedCampus.image} />
+          <img src={currentEntity.image} />
         </div>
         <div className="bio">
-          <div className="bio-title">
-            {this.props.edit ? (
-              <input
-                name="name"
-                type="text"
-                defaultValue={selectedCampus.name}
-              />
-            ) : (
-              <span> {selectedCampus.name}</span>
-            )}
-            {this.props.edit ? (
-              <i
-                className="em em-floppy_disk"
-                onClick={this.props.toggleEdit}
-              />
-            ) : (
-              <i className="em em-pencil" onClick={this.props.toggleEdit} />
-            )}
-          </div>
+          <form id="bio-form" onSubmit={this.handleSubmitAllEdits}>
+            <div className="bio-title">
+              <EditField header={'name'} />
+              {this.props.edit ? (
+                <i
+                  className="em em-floppy_disk"
+                  onClick={this.props.toggleEdit}
+                />
+              ) : (
+                <i className="em em-pencil" onClick={this.props.toggleEdit} />
+              )}
+            </div>
+            <EditField header={'id'} />
+            <EditField header={'address'} />
+            <EditField header={'image'} />
+          </form>
           <div>students:</div>
           <div className="bio students-list">
-            {selectedCampus.students.map(student => (
+            {currentEntity.students.map(student => (
               <div key={student.id}>
                 <Link to={`/students/${student.id}`}>
                   {student.name} - id: {student.id}
                 </Link>
               </div>
             ))}
+            <form id="add-student-form" onSubmit={this.handleSubmitStudent}>
+              <select name="studentSelect" defaultValue="default">
+                <option value="default" disabled hidden>
+                  add student
+                </option>
+                {this.props.students
+                  .filter(student => student.campusId !== currentEntity.id)
+                  .map(student => (
+                    <option key={student.id} value={student.id}>
+                      {student.name}
+                    </option>
+                  ))}
+              </select>
+              <button type="submit">add</button>
+            </form>
             <br />
-          </div>
-          <div>
-            img url:{' '}
-            {this.props.edit ? (
-              <input
-                name="image"
-                type="text"
-                defaultValue={selectedCampus.image}
-              />
-            ) : (
-              <span> {selectedCampus.image}</span>
-            )}
           </div>
         </div>
       </div>
@@ -73,12 +102,20 @@ class SingleCampus extends Component {
 
 function mapStateToProps(state) {
   return {
+    currentEntity: state.currentEntity,
+    editForm: state.editForm,
     campuses: state.campuses,
+    students: state.students,
     edit: state.edit
   };
 }
 
-const mapDispatchToProps = { toggleEdit };
+const mapDispatchToProps = {
+  toggleEdit,
+  extUpdateStudent,
+  updateStudentRecord,
+  updateCampusRequest
+};
 
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(SingleCampus)

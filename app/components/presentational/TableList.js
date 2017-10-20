@@ -21,17 +21,22 @@ function TableList({ type, entities, removeEntity, selectEntity }) {
             <tr key={entity.id}>
               <td>{entity.id}</td>
               <td>{entity.name}</td>
-              {headersFromEntity(entity).map(
-                header =>
-                  header === 'students' ? (
-                    <td key={header}>{entity[header].length}</td>
-                  ) : (
-                    <td key={header}>{entity[header]}</td>
-                  )
-              )}
+              {headersFromEntity(entity).map(header => {
+                switch (header) {
+                  case 'students':
+                    return <td key={header}>{entity[header].length}</td>;
+                  case 'campus':
+                    return <td key={header}>{entity[header].name}</td>;
+                  default:
+                    return <td key={header}>{entity[header]}</td>;
+                }
+              })}
               <td>
                 <NavLink to={`/${type}/${entity.id}`}>
-                  <i onClick={() => selectEntity(entity)} className="em em-mag" />
+                  <i
+                    onClick={() => selectEntity(entity)}
+                    className="em em-mag"
+                  />
                 </NavLink>
               </td>
               <td>
@@ -54,8 +59,16 @@ function TableList({ type, entities, removeEntity, selectEntity }) {
 function headersFromEntity(entity) {
   return Object.keys(entity).filter(
     key =>
-      ['createdAt', 'updatedAt', 'image', 'address', 'email', 'name', 'id'].indexOf(key) ===
-      -1
+      [
+        'createdAt',
+        'updatedAt',
+        'image',
+        'address',
+        'email',
+        'name',
+        'id',
+        'campusId'
+      ].indexOf(key) === -1
   );
 }
 

@@ -1,12 +1,13 @@
 'use strict';
 
 const api = require('express').Router();
-const { Student } = require('../../db/models');
+const { Campus, Student } = require('../../db/models');
 
 // GET /api/students
 api.get('/', (req, res, next) => {
-  Student.findAll({})
+  Student.findAll({ include: [{ model: Campus }] })
     .then(students => {
+      console.log(students);
       res.json(students);
     })
     .catch(next);
