@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter, Switch, Route } from 'react-router-dom';
 
 import { removeStudent, setCurrentEntity } from '../../store';
-import CurrentEntity from './CurrentEntity';
+import SingleStudent from './SingleStudent';
 import AddStudent from './AddStudent';
 import TableList from '../presentational/TableList';
 
@@ -12,7 +12,7 @@ function Students(props) {
     <div>
       <Switch>
         <Route exact path="/students/add" component={AddStudent} />
-        <Route path="/students/:campusId" component={CurrentEntity} />
+        <Route path="/students/:campusId" component={SingleStudent} />
       </Switch>
       <TableList
         type="students"

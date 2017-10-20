@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 function EditField(props) {
-  console.log(props);
   return (
     <div key={props.header}>
       <span>{props.header}: </span>

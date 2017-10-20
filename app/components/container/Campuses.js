@@ -4,7 +4,6 @@ import { withRouter, Route, Switch } from 'react-router-dom';
 
 import { removeCampus, deleteStudent, setCurrentEntity } from '../../store';
 import AddCampus from './AddCampus';
-import CurrentEntity from './CurrentEntity';
 import SingleCampus from './SingleCampus';
 import TableList from '../presentational/TableList';
 

@@ -26,7 +26,10 @@ api.post('/', (req, res, next) => {
 
 // Params: get campus if exists
 api.param('campusId', (req, res, next, campusId) => {
-  Campus.findById(campusId).then(campus => {
+  Campus.findOne({
+    where: { id: campusId },
+    include: [{ model: Student }]
+  }).then(campus => {
     if (!campus) {
       const err = Error('Campus not found');
       err.status = 404;

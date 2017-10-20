@@ -7,11 +7,20 @@ import EditField from './EditField';
 import {
   toggleEdit,
   extUpdateStudent,
-  updateStudentRecord,
-  updateCampusRequest
+  updateStudentRequest,
+  updateCampusRequest,
+  setCurrentEntity,
+  fetchOneCampus
 } from '../../store';
 
 class SingleCampus extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleSubmitStudent = this.handleSubmitStudent.bind(this);
+    this.handleSubmitAllEdits = this.handleSubmitAllEdits.bind(this);
+  }
+
   componentWillUnmount() {
     if (this.props.edit) this.props.toggleEdit();
   }
@@ -27,20 +36,20 @@ class SingleCampus extends Component {
 
     this.props
       .updateCampusRequest(this.props.currentEntity.id, edittedCampus)
-      .then(() => this.props.toggleEdit())
+      .then((campus) => {
+        this.props.setCurrentEntity(campus);
+        this.props.toggleEdit();
+      })
       .catch(console.error);
   }
 
   handleSubmitStudent(evt) {
     evt.preventDefault();
-    const selectedStudent = this.props.students.find(
-      student => student.id === +evt.target.studentSelect.value
-    );
-    const newStudent = Object.assign({}, selectedStudent, {
-      campusId: this.props.currentEntity.id
-    });
-    console.log(newStudent);
-    this.props.updateStudentRecord(newStudent);
+    const studentId = +evt.target.studentSelect.value;
+    this.props.updateStudentRequest(studentId, {campusId: this.props.currentEntity.id})
+      .then(student => this.props.fetchOneCampus(student.campusId))
+      .then(campus => this.props.setCurrentEntity(campus))
+      .catch(console.error);
   }
 
   render() {
@@ -56,10 +65,7 @@ class SingleCampus extends Component {
             <div className="bio-title">
               <EditField header={'name'} />
               {this.props.edit ? (
-                <i
-                  className="em em-floppy_disk"
-                  onClick={this.props.toggleEdit}
-                />
+                <button type="submit" className="em em-floppy_disk" />
               ) : (
                 <i className="em em-pencil" onClick={this.props.toggleEdit} />
               )}
@@ -113,8 +119,10 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   toggleEdit,
   extUpdateStudent,
-  updateStudentRecord,
-  updateCampusRequest
+  updateStudentRequest,
+  updateCampusRequest,
+  setCurrentEntity,
+  fetchOneCampus
 };
 
 export default withRouter(

@@ -7,7 +7,6 @@ const { Campus, Student } = require('../../db/models');
 api.get('/', (req, res, next) => {
   Student.findAll({ include: [{ model: Campus }] })
     .then(students => {
-      console.log(students);
       res.json(students);
     })
     .catch(next);
@@ -28,7 +27,10 @@ api.post('/', (req, res, next) => {
 
 // Params: get student if exists
 api.param('studentId', (req, res, next, studentId) => {
-  Student.findById(studentId).then(student => {
+  Student.findOne({
+    where: { id: studentId },
+    include: [{ model: Campus }]
+  }).then(student => {
     if (!student) {
       const err = Error('Student not found');
       err.status = 404;

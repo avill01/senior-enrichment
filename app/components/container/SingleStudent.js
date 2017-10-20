@@ -1,27 +1,71 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
-import { toggleEdit } from '../../store';
+import EditField from './EditField';
 
-import CurrentEntity from './CurrentEntity';
+import {
+  toggleEdit,
+  setCurrentEntity,
+  updateStudentRequest
+} from '../../store';
 
 class SingleStudent extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      selectedStudent: this.props.students.find(
-        student => student.id === +this.props.match.params.studentId
-      )
-    };
+    this.handleSubmitAllEdits = this.handleSubmitAllEdits.bind(this);
   }
+
+  componentWillUnmount() {
+    if (this.props.edit) this.props.toggleEdit();
+  }
+
+  handleSubmitAllEdits(evt) {
+    evt.preventDefault();
+
+    const edittedStudent = {};
+    edittedStudent.id = evt.target.id.value;
+    edittedStudent.email = evt.target.email.value;
+    edittedStudent.address = evt.target.address.value;
+    edittedStudent.name = evt.target.name.value;
+    edittedStudent.image = evt.target.image.value;
+    edittedStudent.campusId = evt.target.campusId.value;
+
+    this.props
+      .updateStudentRequest(this.props.currentEntity.id, edittedStudent)
+      .then((student) => {
+        this.props.setCurrentEntity(student);
+        this.props.toggleEdit();
+      })
+      .catch(console.error);
+  }
+
   render() {
-    const selectedStudent = this.state.selectedStudent;
-    if (!selectedStudent) return null;
+    const currentEntity = this.props.currentEntity;
+    if (!currentEntity) return null;
     return (
       <div id="single-campus-content">
-        <CurrentEntity />
+        <div id="left-bar">
+          <img src={currentEntity.image} />
+        </div>
+        <div className="bio">
+          <form id="bio-form" onSubmit={this.handleSubmitAllEdits}>
+            <div className="bio-title">
+              <EditField header={'name'} />
+              {this.props.edit ? (
+                <button type="submit" className="em em-floppy_disk" />
+              ) : (
+                <i className="em em-pencil" onClick={this.props.toggleEdit} />
+              )}
+            </div>
+            <EditField header={'id'} />
+            <EditField header={'email'} />
+            <EditField header={'address'} />
+            <EditField header={'image'} />
+            <EditField header={'campusId'} />
+          </form>
+        </div>
       </div>
     );
   }
@@ -29,13 +73,16 @@ class SingleStudent extends Component {
 
 function mapStateToProps(state) {
   return {
-    students: state.students,
-    campuses: state.campuses,
+    currentEntity: state.currentEntity,
     edit: state.edit
   };
 }
 
-const mapDispatchToProps = { toggleEdit };
+const mapDispatchToProps = {
+  toggleEdit,
+  setCurrentEntity,
+  updateStudentRequest
+};
 
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(SingleStudent)

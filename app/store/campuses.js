@@ -18,7 +18,6 @@ export function updateCampus(campus) {
   return { type: UPDATE_CAMPUS, campus };
 }
 
-
 export default function reducer(state = [], action) {
   switch (action.type) {
     case GET_CAMPUSES:
@@ -47,6 +46,18 @@ export function fetchCampuses() {
       .catch(console.error);
   };
 }
+export function fetchOneCampus(id) {
+  return function thunk(dispatch) {
+    return axios
+      .get(`/api/campuses/${id}`)
+      .then(res => res.data)
+      .then(campus => {
+        dispatch(updateCampus(campus));
+        return campus;
+      })
+      .catch(console.error);
+  };
+}
 export const createCampus = body => dispatch => {
   return axios
     .post('/api/campuses', body)
@@ -71,9 +82,10 @@ export const removeCampus = id => dispatch => {
 export const updateCampusRequest = (id, body) => dispatch => {
   return axios
     .put(`/api/campuses/${id}`, body)
+    .then(res => res.data)
     .then(campus => {
-      console.log('new campus', campus);
       dispatch(updateCampus(campus));
+      return campus;
     })
     .catch(console.error);
 };
