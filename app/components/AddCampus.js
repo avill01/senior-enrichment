@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 
 import { createCampus } from '../store';
 
@@ -45,4 +44,4 @@ const mapState = state => ({
 
 const mapDispatch = { createCampus };
 
-export default withRouter(connect(mapState, mapDispatch)(AddCampus));
+export default connect(mapState, mapDispatch)(AddCampus);

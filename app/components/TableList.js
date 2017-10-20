@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 
+//this takes a list of students or campuses and creates a table with headers and rows based on the given entities keys.
 function TableList({ type, entities, removeEntity, selectEntity }) {
-  //entity being student or campus
   if (!entities.length) return null;
   return (
     <table id="all-campuses">
@@ -21,6 +21,7 @@ function TableList({ type, entities, removeEntity, selectEntity }) {
             <tr key={entity.id}>
               <td>{entity.id}</td>
               <td>{entity.name}</td>
+              {/*It's about here that I realized this wasn't the best idea, who needs "entities" anyway?*/}
               {headersFromEntity(entity).map(header => {
                 switch (header) {
                   case 'students':
@@ -56,6 +57,7 @@ function TableList({ type, entities, removeEntity, selectEntity }) {
   );
 }
 
+//remove unwanted headers for iteration through keys
 function headersFromEntity(entity) {
   return Object.keys(entity).filter(
     key =>

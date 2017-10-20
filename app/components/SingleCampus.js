@@ -21,6 +21,12 @@ class SingleCampus extends Component {
     this.handleSubmitAllEdits = this.handleSubmitAllEdits.bind(this);
   }
 
+  componentDidMount() {
+    this.props
+      .fetchOneCampus(this.props.match.params.id)
+      .then(campus => this.props.setCurrentEntity(campus));
+  }
+
   componentWillUnmount() {
     if (this.props.edit) this.props.toggleEdit();
   }
@@ -57,7 +63,7 @@ class SingleCampus extends Component {
 
   render() {
     const currentEntity = this.props.currentEntity;
-    if (!currentEntity) return null;
+    if (!currentEntity.id) return null;
     return (
       <div id="single-campus-content">
         <div id="left-bar">
@@ -79,18 +85,20 @@ class SingleCampus extends Component {
           </form>
           <div>students:</div>
           <div className="bio students-list">
-            {currentEntity.students.map(student => (
-              <div
-                key={student.id}
-                onClick={() => {
-                  this.props.setCurrentEntity(student);
-                }}
-              >
-                <Link to={`/students/${student.id}`}>
+            {currentEntity.students &&
+              currentEntity.students.map(student => (
+                <div
+                  key={student.id}
+                  onClick={() => {
+                    this.props.setCurrentEntity(student);
+                  }}
+                >
                   {student.name} - id: {student.id}
-                </Link>
-              </div>
-            ))}
+                  <Link to={`/students/${student.id}`}>
+                    <i className="em em-fire" />
+                  </Link>
+                </div>
+              ))}
             <form id="add-student-form" onSubmit={this.handleSubmitStudent}>
               <select name="studentSelect" defaultValue="default">
                 <option value="default" disabled hidden>

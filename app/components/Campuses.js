@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
 
 import { removeCampus, deleteStudent, setCurrentEntity } from '../store';
-import AddCampus from './AddCampus';
+
 import SingleCampus from './SingleCampus';
+import AddCampus from './AddCampus';
 import TableList from './TableList';
 
 function Campuses(props) {

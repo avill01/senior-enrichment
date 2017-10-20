@@ -8,6 +8,8 @@ import {
   toggleEdit,
   fetchStudents,
   setCurrentEntity,
+  fetchOneStudent,
+  fetchOneCampus,
   updateStudentRequest
 } from '../store';
 
@@ -16,6 +18,13 @@ class SingleStudent extends Component {
     super(props);
 
     this.handleSubmitAllEdits = this.handleSubmitAllEdits.bind(this);
+  }
+
+  componentDidMount() {
+    console.log(this.props.match.params);
+    this.props
+      .fetchOneStudent(this.props.match.params.id)
+      .then(student => this.props.setCurrentEntity(student));
   }
 
   componentWillUnmount() {
@@ -45,6 +54,7 @@ class SingleStudent extends Component {
   render() {
     const currentEntity = this.props.currentEntity;
     if (!currentEntity.id) return null;
+    console.log(currentEntity);
     return (
       <div id="single-campus-content">
         <div id="left-bar">
@@ -64,10 +74,19 @@ class SingleStudent extends Component {
             <EditField header={'email'} />
             <EditField header={'address'} />
             <EditField header={'image'} />
-            <EditField header={'campusId'} />
-            <Link to={`/campuses/${currentEntity.campusId}`}>
-            ADD PROPER CURRENT ENTITY
-            </Link>
+            <div id="campus-link">
+              <EditField header={'campusId'} />
+              <Link to={`/campuses/${currentEntity.campusId}`}>
+                <i
+                  className="em em-fire"
+                  onClick={() =>
+                    this.props
+                      .fetchOneCampus(currentEntity.campusId)
+                      .then(campus => console.log(campus) || this.props.setCurrentEntity(campus))
+                      .catch(console.error)}
+                />
+              </Link>
+            </div>
           </form>
         </div>
       </div>
@@ -86,6 +105,8 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   toggleEdit,
   fetchStudents,
+  fetchOneStudent,
+  fetchOneCampus,
   setCurrentEntity,
   updateStudentRequest
 };

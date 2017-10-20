@@ -47,6 +47,18 @@ export function fetchStudents() {
       .catch(console.error);
   };
 }
+export function fetchOneStudent(id) {
+  return function thunk(dispatch) {
+    return axios
+      .get(`/api/students/${id}`)
+      .then(res => res.data)
+      .then(student => {
+        dispatch(updateStudent(student));
+        return student;
+      })
+      .catch(console.error);
+  };
+}
 export const createStudent = body => dispatch => {
   return axios
     .post('/api/students', body)
