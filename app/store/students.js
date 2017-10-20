@@ -42,6 +42,7 @@ export function fetchStudents() {
       .then(res => res.data)
       .then(students => {
         dispatch(getStudents(students));
+        return students;
       })
       .catch(console.error);
   };

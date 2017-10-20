@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { createCampus } from '../../store';
+import { createCampus } from '../store';
 
 class AddCampus extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class AddCampus extends Component {
 
   submit(evt) {
     evt.preventDefault();
-    this.props.createCampus({name: this.state.name});
+    this.props.createCampus({ name: this.state.name });
     this.setState({ name: '', students: [] });
   }
 

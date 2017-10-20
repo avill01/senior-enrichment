@@ -2,17 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Switch, Route } from 'react-router-dom';
 
-import { removeStudent, setCurrentEntity } from '../../store';
+import { removeStudent, setCurrentEntity } from '../store';
 import SingleStudent from './SingleStudent';
 import AddStudent from './AddStudent';
-import TableList from '../presentational/TableList';
+import TableList from './TableList';
 
 function Students(props) {
   return (
     <div>
       <Switch>
         <Route exact path="/students/add" component={AddStudent} />
-        <Route path="/students/:campusId" component={SingleStudent} />
+        <Route path="/students/:id" component={SingleStudent} />
       </Switch>
       <TableList
         type="students"

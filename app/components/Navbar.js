@@ -1,8 +1,6 @@
 import React from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 
-// import { connect } from 'react-redux';
-
 function Navbar(props) {
   return (
     <div>
@@ -16,7 +14,7 @@ function Navbar(props) {
       </div>
       <div id="navbar">
         <div id="navbar-left">
-          <NavLink to="/" activeClassName="active">
+          <NavLink exact to="/" activeClassName="active">
             <button>home</button>
           </NavLink>
           <NavLink to="/campuses" activeClassName="active">
@@ -26,16 +24,26 @@ function Navbar(props) {
             <button>students</button>
           </NavLink>
         </div>
-        {props.location.pathname.match('campuses') && (
-          <NavLink to="/campuses/add">
-            <button>add campus</button>
-          </NavLink>
-        )}
-        {props.location.pathname.match('students') && (
-          <NavLink to="/students/add">
-            <button>add student</button>
-          </NavLink>
-        )}
+        {props.location.pathname.match('campuses') &&
+          (props.location.pathname.match('add') ? (
+            <NavLink to="/campuses">
+              <button>add campus</button>
+            </NavLink>
+          ) : (
+            <NavLink to="/campuses/add">
+              <button>add campus</button>
+            </NavLink>
+          ))}
+        {props.location.pathname.match('students') &&
+          (props.location.pathname.match('add') ? (
+            <NavLink to="/students">
+              <button>add student</button>
+            </NavLink>
+          ) : (
+            <NavLink to="/students/add">
+              <button>add student</button>
+            </NavLink>
+          ))}
       </div>
     </div>
   );

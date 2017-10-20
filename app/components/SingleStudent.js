@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 import EditField from './EditField';
 
 import {
   toggleEdit,
+  fetchStudents,
   setCurrentEntity,
   updateStudentRequest
-} from '../../store';
+} from '../store';
 
 class SingleStudent extends Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class SingleStudent extends Component {
 
     this.props
       .updateStudentRequest(this.props.currentEntity.id, edittedStudent)
-      .then((student) => {
+      .then(student => {
         this.props.setCurrentEntity(student);
         this.props.toggleEdit();
       })
@@ -43,7 +44,7 @@ class SingleStudent extends Component {
 
   render() {
     const currentEntity = this.props.currentEntity;
-    if (!currentEntity) return null;
+    if (!currentEntity.id) return null;
     return (
       <div id="single-campus-content">
         <div id="left-bar">
@@ -64,6 +65,9 @@ class SingleStudent extends Component {
             <EditField header={'address'} />
             <EditField header={'image'} />
             <EditField header={'campusId'} />
+            <Link to={`/campuses/${currentEntity.campusId}`}>
+            ADD PROPER CURRENT ENTITY
+            </Link>
           </form>
         </div>
       </div>
@@ -74,12 +78,14 @@ class SingleStudent extends Component {
 function mapStateToProps(state) {
   return {
     currentEntity: state.currentEntity,
+    students: state.students,
     edit: state.edit
   };
 }
 
 const mapDispatchToProps = {
   toggleEdit,
+  fetchStudents,
   setCurrentEntity,
   updateStudentRequest
 };

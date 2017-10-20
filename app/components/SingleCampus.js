@@ -11,7 +11,7 @@ import {
   updateCampusRequest,
   setCurrentEntity,
   fetchOneCampus
-} from '../../store';
+} from '../store';
 
 class SingleCampus extends Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class SingleCampus extends Component {
 
     this.props
       .updateCampusRequest(this.props.currentEntity.id, edittedCampus)
-      .then((campus) => {
+      .then(campus => {
         this.props.setCurrentEntity(campus);
         this.props.toggleEdit();
       })
@@ -46,7 +46,10 @@ class SingleCampus extends Component {
   handleSubmitStudent(evt) {
     evt.preventDefault();
     const studentId = +evt.target.studentSelect.value;
-    this.props.updateStudentRequest(studentId, {campusId: this.props.currentEntity.id})
+    this.props
+      .updateStudentRequest(studentId, {
+        campusId: this.props.currentEntity.id
+      })
       .then(student => this.props.fetchOneCampus(student.campusId))
       .then(campus => this.props.setCurrentEntity(campus))
       .catch(console.error);
@@ -77,7 +80,12 @@ class SingleCampus extends Component {
           <div>students:</div>
           <div className="bio students-list">
             {currentEntity.students.map(student => (
-              <div key={student.id}>
+              <div
+                key={student.id}
+                onClick={() => {
+                  this.props.setCurrentEntity(student);
+                }}
+              >
                 <Link to={`/students/${student.id}`}>
                   {student.name} - id: {student.id}
                 </Link>

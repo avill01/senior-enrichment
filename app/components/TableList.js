@@ -41,7 +41,7 @@ function TableList({ type, entities, removeEntity, selectEntity }) {
               </td>
               <td>
                 <i
-                  className="em em-x"
+                  className="em em-heavy_multiplication_x"
                   onClick={evt => {
                     evt.preventDefault();
                     confirm('Are you sure?') && removeEntity(entity.id);

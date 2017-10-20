@@ -1,27 +1,26 @@
 import React, { Component } from 'react';
-import { Route, withRouter, Switch } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { fetchCampuses, fetchStudents } from '../store';
 
-import Navbar from './container/Navbar';
-import Campuses from './container/Campuses';
-import Students from './container/Students';
+import Navbar from './Navbar';
+import Campuses from './Campuses';
+import Students from './Students';
 
 class Root extends Component {
   componentDidMount() {
     this.props.fetchCampuses();
     this.props.fetchStudents();
-    //if something in url load current entity
   }
 
   render() {
     return (
       <div id="main">
         <Navbar />
-          <Route path="/campuses" component={Campuses} />
-          <Route path="/students" component={Students} />
-          <Route redirect="/" />
+        <Route path="/campuses" component={Campuses} />
+        <Route path="/students" component={Students} />
+        <Route redirect="/" />
       </div>
     );
   }

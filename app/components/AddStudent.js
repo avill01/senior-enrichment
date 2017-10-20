@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { createStudent } from '../../store';
+import { createStudent } from '../store';
 
 class AddStudent extends Component {
   constructor(props) {
