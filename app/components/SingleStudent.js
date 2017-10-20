@@ -6,10 +6,9 @@ import EditField from './EditField';
 
 import {
   toggleEdit,
-  fetchStudents,
-  setCurrentEntity,
-  fetchOneStudent,
   fetchOneCampus,
+  fetchOneStudent,
+  setCurrentEntity,
   updateStudentRequest
 } from '../store';
 
@@ -21,7 +20,6 @@ class SingleStudent extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.match.params);
     this.props
       .fetchOneStudent(this.props.match.params.id)
       .then(student => this.props.setCurrentEntity(student));
@@ -54,7 +52,6 @@ class SingleStudent extends Component {
   render() {
     const currentEntity = this.props.currentEntity;
     if (!currentEntity.id) return null;
-    console.log(currentEntity);
     return (
       <div id="single-campus-content">
         <div id="left-bar">
@@ -75,17 +72,21 @@ class SingleStudent extends Component {
             <EditField header={'address'} />
             <EditField header={'image'} />
             <div id="campus-link">
-              <EditField header={'campusId'} />
               <Link to={`/campuses/${currentEntity.campusId}`}>
                 <i
                   className="em em-fire"
                   onClick={() =>
                     this.props
                       .fetchOneCampus(currentEntity.campusId)
-                      .then(campus => console.log(campus) || this.props.setCurrentEntity(campus))
+                      .then(
+                        campus =>
+                          console.log(campus) ||
+                          this.props.setCurrentEntity(campus)
+                      )
                       .catch(console.error)}
                 />
               </Link>
+              <EditField header={'campusId'} />
             </div>
           </form>
         </div>
@@ -96,17 +97,16 @@ class SingleStudent extends Component {
 
 function mapStateToProps(state) {
   return {
-    currentEntity: state.currentEntity,
+    edit: state.edit,
     students: state.students,
-    edit: state.edit
+    currentEntity: state.currentEntity
   };
 }
 
 const mapDispatchToProps = {
   toggleEdit,
-  fetchStudents,
-  fetchOneStudent,
   fetchOneCampus,
+  fetchOneStudent,
   setCurrentEntity,
   updateStudentRequest
 };

@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import { fetchCampuses, fetchStudents } from '../store';
 
 import Navbar from './Navbar';
-import Campuses from './Campuses';
-import Students from './Students';
+import AllCampuses from './AllCampuses';
+import AllStudents from './AllStudents';
 
 class Root extends Component {
   componentDidMount() {
@@ -18,8 +18,8 @@ class Root extends Component {
     return (
       <div id="main">
         <Navbar />
-        <Route path="/campuses" component={Campuses} />
-        <Route path="/students" component={Students} />
+        <Route path="/campuses" component={AllCampuses} />
+        <Route path="/students" component={AllStudents} />
         <Route redirect="/" />
       </div>
     );

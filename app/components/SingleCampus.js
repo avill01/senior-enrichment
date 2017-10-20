@@ -6,11 +6,10 @@ import EditField from './EditField';
 
 import {
   toggleEdit,
-  extUpdateStudent,
-  updateStudentRequest,
-  updateCampusRequest,
+  fetchOneCampus,
   setCurrentEntity,
-  fetchOneCampus
+  updateCampusRequest,
+  updateStudentRequest
 } from '../store';
 
 class SingleCampus extends Component {
@@ -35,10 +34,10 @@ class SingleCampus extends Component {
     evt.preventDefault();
 
     const edittedCampus = {};
-    edittedCampus.name = evt.target.name.value;
     edittedCampus.id = evt.target.id.value;
-    edittedCampus.address = evt.target.address.value;
+    edittedCampus.name = evt.target.name.value;
     edittedCampus.image = evt.target.image.value;
+    edittedCampus.address = evt.target.address.value;
 
     this.props
       .updateCampusRequest(this.props.currentEntity.id, edittedCampus)
@@ -93,10 +92,10 @@ class SingleCampus extends Component {
                     this.props.setCurrentEntity(student);
                   }}
                 >
-                  {student.name} - id: {student.id}
                   <Link to={`/students/${student.id}`}>
                     <i className="em em-fire" />
                   </Link>
+                  {student.name} - id: {student.id}
                 </div>
               ))}
             <form id="add-student-form" onSubmit={this.handleSubmitStudent}>
@@ -124,21 +123,20 @@ class SingleCampus extends Component {
 
 function mapStateToProps(state) {
   return {
-    currentEntity: state.currentEntity,
+    edit: state.edit,
     editForm: state.editForm,
     campuses: state.campuses,
     students: state.students,
-    edit: state.edit
+    currentEntity: state.currentEntity
   };
 }
 
 const mapDispatchToProps = {
   toggleEdit,
-  extUpdateStudent,
-  updateStudentRequest,
-  updateCampusRequest,
+  fetchOneCampus,
   setCurrentEntity,
-  fetchOneCampus
+  updateCampusRequest,
+  updateStudentRequest
 };
 
 export default withRouter(

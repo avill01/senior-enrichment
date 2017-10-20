@@ -1,3 +1,4 @@
+/*If we were graded on css tidiness this would not go well...*/
 * {
   box-sizing: border-box;
   margin: 0;
@@ -98,6 +99,7 @@ tr:nth-child(odd) {
   padding-left: 1em;
 }
 .bio-title {
+  display: flex;
   font-size: 1.5em;
 }
 .bio-title i {
